@@ -46,28 +46,20 @@ router.post('/', async (req, res) => {
 });
 
 // Eliminar una categoría 
-router.delete('/', async (req, res) => {
-    try {
-        const { nombre_categoria } = req.body;
+router.delete('/:id', async (req, res) => {
 
-        // Identificar registro con mismo nombre.
-        const query = `SELECT * FROM categorias WHERE nombre_categoria='${nombre_categoria}';`;
+    const id = req.params.id;
+    const query = `DELETE FROM categorias WHERE id = ${id}`;
+    try {
         await client.connect();
         client.query(query, (err, result) => {
-            if (result.rows.length === 0) {
-                client.end();
-                return res.status(401).send();
-            } else {
-                // Despues de verificado, se crea el registro.
-                client.query(`DELETE FROM categorias WHERE nombre_categoria = '${nombre_categoria}'`,
-                    (err, result) => {
-                        client.end();
-                        console.log('Categoría eliminada.');
-                        return res.status(204).send();
-                    })
-            }
+            console.log('Registro eliminado.');
+            client.end();
+            res.status(204).send();
         })
-    } catch (error) {
+    }
+    catch (error) {
+        client.end();
         console.log(error);
     }
 });
