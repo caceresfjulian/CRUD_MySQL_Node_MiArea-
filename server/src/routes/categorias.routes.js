@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
             console.log(result.rows);
             client.end();
             categorias = result.rows;
-            res.json(categorias); 
-        }); 
+            res.json(categorias);
+        });
     }
     catch (error) {
         console.log(error);
@@ -19,8 +19,31 @@ router.get('/', async (req, res) => {
 });
 
 // Crear una categoría nueva
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    try {
+        const { nombre_categoria } = req.body;
 
+        // const query = `SELECT * FROM categorias WHERE nombre_categoria='sapatos';`;
+
+        // Verificar si existe otro registro con mismo nombre
+        const query = `SELECT * FROM categorias WHERE nombre_categoria='${nombre_categoria}';`;
+        await client.connect();
+        client.query(query, (err, result) => {
+            if (result.rows.length > 0) {
+                client.end();
+                return res.status(401).send();
+            } else {
+                client.query(`INSERT INTO categorias (nombre_categoria) VALUES ('${nombre_categoria}')`,
+                    (err, result) => {
+                        client.end();
+                        console.log('Categoría creada.');
+                        return res.status(201).send();
+                    })
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 // Eliminar una
