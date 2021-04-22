@@ -1,3 +1,4 @@
+// Creación del servidor con Express y Node
 const express = require('express'); 
 
 // const cors = require('cors');

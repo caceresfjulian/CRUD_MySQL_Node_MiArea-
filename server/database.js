@@ -1,3 +1,5 @@
+// conexión a db
+
 const {Client} = require('pg');
 
 const client = new Client ({
