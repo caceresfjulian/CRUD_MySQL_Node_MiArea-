@@ -5,17 +5,20 @@ require('dotenv').config({path: './.env'});
 
 const app = express();
 
-app.listen(process.env.PORT, () => {
-    console.log('Escuchando por el puerto 4000...')
-});
+app.use(express.json());
 
 // Conexión a db
-const client = require('./database');
+// require('./src/database');
 
-//Creación de las tablas solicitadas
-client.query('SELECT * from categorias', (err, res) => {
-    if(!err){
-        console.log(res.rows);
-    }
-    client.end();
-})
+// Creación de las tablas solicitadas
+// client.query('SELECT * from categorias', (err, res) => {
+//     if(!err){
+//         console.log(res.rows);
+//     }
+//     client.end();
+// })
+app.listen(process.env.PORT, () => {
+    console.log('Escuchando por el puerto', process.env.PORT);
+});
+
+app.use('/categorias/', require('./src/routes/categorias.routes'));
