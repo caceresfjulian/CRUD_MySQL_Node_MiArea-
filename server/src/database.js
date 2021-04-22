@@ -10,6 +10,6 @@ const client = new Client ({
     port: process.env.PGPORT
 });
 
-client.connect().then( db => console.log('Tamo en vivo.')).catch(err => console.log(err));
+// client.connect().then( db => console.log('Conexión OK a DB.')).catch(err => console.log(err));
 
 module.exports = client; 
