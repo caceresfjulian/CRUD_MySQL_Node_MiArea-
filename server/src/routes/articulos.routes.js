@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
     }
 });
 
-// Eliminar una categoría 
+// Eliminar un artículo. 
 router.delete('/:id', async (req, res) => {
 
     const id = req.params.id;
@@ -42,7 +42,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// Modificar una categoría específica
+// Modificar un artículo específico.
 router.put('/', async (req, res) => {
     
     const nuevo_numero_registro = req.body.numero_registro;
