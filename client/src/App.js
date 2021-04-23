@@ -1,14 +1,13 @@
 import Categorias from "./components/Categorias";
 import Header from "./components/Header";
 import './App.css';
+import Router from "./Router";
+
 
 function App() {
   return (
     <div>
-      <Header />
-      <div className="container">
-        <Categorias />
-      </div>
+    <Router />
     </div>
   );
 }
