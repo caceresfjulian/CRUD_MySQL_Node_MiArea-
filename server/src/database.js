@@ -1,8 +1,7 @@
 // conexión a db
+const Pool = require('pg').Pool;
 
-const {Client} = require('pg');
-
-const client = new Client ({
+const pool = new Pool ({
     user: process.env.PGUSER,
     host: process.env.PGHOST,
     database: process.env.PGUSER,
@@ -10,6 +9,4 @@ const client = new Client ({
     port: process.env.PGPORT
 });
 
-// client.connect().then( db => console.log('Conexión OK a DB.')).catch(err => console.log(err));
-
-module.exports = client; 
+module.exports = pool; 
