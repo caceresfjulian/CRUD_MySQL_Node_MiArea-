@@ -25,7 +25,7 @@ function Categorias() {
 
     // Pasar lista a componentes hijos, función solicitar categorias al form.
     return (
-        <div className="">
+        <div className="container">
             <FormCategorias obtenerCategorias={obtenerCategorias} />
             <ListaCategorias listaCategorias={listaCategorias} obtenerCategorias={obtenerCategorias}/>
         </div>
