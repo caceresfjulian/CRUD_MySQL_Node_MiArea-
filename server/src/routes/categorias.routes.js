@@ -35,8 +35,10 @@ router.post('/', async (req, res) => {
                 client.query(`INSERT INTO categorias (nombre_categoria) VALUES ('${nombre_categoria}')`,
                     (err, result) => {
                         client.end();
-                        console.log('Categoría creada.');
-                        return res.status(201).send();
+                        return res
+                            .json({ mensaje: `Categoría ${nombre_categoria} creada.` })
+                            .status(201)
+                            .send();
                     })
             }
         })
@@ -53,9 +55,11 @@ router.delete('/:id', async (req, res) => {
     try {
         await client.connect();
         client.query(query, (err, result) => {
-            console.log('Registro eliminado.');
             client.end();
-            res.status(204).send();
+            res
+                .json({ mensaje: 'Registro eliminado.' })
+                .status(204)
+                .send();
         })
     }
     catch (error) {
@@ -65,8 +69,26 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Modificar una categoría específica
-router.put('/', (req, res) => {
+router.put('/', async (req, res) => {
+    const nuevo_nombre = req.body.nombre_categoria;
+    const id = req.body.id;
+    const query = `UPDATE categorias SET nombre_categoria ='${nuevo_nombre}' WHERE id=${id}`;
 
+    try {
+        await client.connect();
+        client.query(query, (err, result) => {
+            if (!err) {
+                res
+                    .json({ mensaje: `Categoría actualizada a ${nuevo_nombre}` })
+                    .status(200)
+                    .send();
+            } else {
+                console.log(err);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 module.exports = router;
