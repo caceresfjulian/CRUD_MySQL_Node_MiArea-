@@ -25,7 +25,7 @@ function Categorias() {
 
     // Pasar lista a componentes hijos, función solicitar categorias al form.
     return (
-        <div className="row justify-content-between">
+        <div className="">
             <FormCategorias obtenerCategorias={obtenerCategorias} />
             <ListaCategorias listaCategorias={listaCategorias} obtenerCategorias={obtenerCategorias}/>
         </div>

@@ -11,15 +11,16 @@ function ListaCategorias({ listaCategorias, obtenerCategorias }) {
     //Actualizar categoria.
     async function actualizarCategoria(id) {
         // Validación de input
-        if ( nuevaCategoria.length === 0 ){
+        if (nuevaCategoria.length === 0) {
             return swal("Error", "Revisa los campos requeridos", "warning");
         } else {
-        await axios.put('http://localhost:4000/categorias', {
-            id: id,
-            nombre_categoria: nuevaCategoria
-        });
-        setnuevaCategoria("");
-        obtenerCategorias();}
+            await axios.put('http://localhost:4000/categorias', {
+                id: id,
+                nombre_categoria: nuevaCategoria
+            });
+            setnuevaCategoria("");
+            obtenerCategorias();
+        }
     }
 
     //Borrar categoria.
@@ -29,20 +30,19 @@ function ListaCategorias({ listaCategorias, obtenerCategorias }) {
     };
 
     return (
-        <div className="col-6 mt-3">
-            <h1>Lista</h1>
-            {listaCategorias.map((categoria, key) => {
-                return <div key={key} className="card">
-                    <div className="card-body">
-                        <h5 className="card-title d-inline">{categoria.nombre_categoria}</h5>
-                        <span className="badge badge-pill badge-danger m-2">{categoria.id}</span>
-                        <input type="text" placeholder="Nueva categoría" className="form-control" onChange={(event) => { setnuevaCategoria(event.target.value) }} ></input>
-                        <button className="btn btn-primary mt-3 mr-2" onClick={() => actualizarCategoria(categoria.id)}>Actualizar</button>
-                        <button className="btn btn-danger mt-3 mr-2" onClick={() => borrarCategoria(categoria.id)}>Borrar</button>
+            <div className="d-flex row justify-content-center mt-5">
+                {listaCategorias.map((categoria, key) => {
+                    return <div key={key} className="card shadow col-3 m-2 align-selft-start">
+                        <div className="card-body">
+                            <h5 className="card-title d-inline">{categoria.nombre_categoria}</h5>
+                            <span className="badge badge-pill badge-danger m-2">{categoria.id}</span>
+                            <input type="text" placeholder="Nueva categoría" className="form-control" onChange={(event) => { setnuevaCategoria(event.target.value) }} ></input>
+                            <button className="btn btn-primary mt-3 mr-2" onClick={() => actualizarCategoria(categoria.id)}>Actualizar</button>
+                            <button className="btn btn-danger mt-3 mr-2" onClick={() => borrarCategoria(categoria.id)}>Borrar</button>
+                        </div>
                     </div>
-                </div>
-            })}
-        </div>
+                })}
+            </div>
     )
 }
 
