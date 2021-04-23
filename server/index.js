@@ -21,4 +21,6 @@ app.listen(process.env.PORT, () => {
     console.log('Escuchando por el puerto', process.env.PORT);
 });
 
+app.use('/api/', require('./src/routes/api.routes'));
 app.use('/categorias/', require('./src/routes/categorias.routes'));
+
