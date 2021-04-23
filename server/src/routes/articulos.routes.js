@@ -42,26 +42,29 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// // Modificar una categoría específica
-// router.put('/', async (req, res) => {
-//     const nuevo_nombre = req.body.nombre_categoria;
-//     const id = req.body.id;
-//     const query = `UPDATE categorias SET nombre_categoria ='${nuevo_nombre}' WHERE id=${id}`;
+// Modificar una categoría específica
+router.put('/', async (req, res) => {
+    
+    const nuevo_numero_registro = req.body.numero_registro;
+    const nuevo_nombre = req.body.nombre;
+    const nuevo_descripcion = req.body.descripcion;
+    const id = req.body.id;
+    const query = `UPDATE articulos SET numero_registro =${nuevo_numero_registro}, nombre ='${nuevo_nombre}', descripcion='${nuevo_descripcion}' WHERE id=${id}`;
 
-//     try {
-//         pool.query(query, (err, result) => {
-//             if (!err) {
-//                 res
-//                     .json({ mensaje: `Categoría actualizada a ${nuevo_nombre}` })
-//                     .status(200)
-//                     .send();
-//             } else {
-//                 console.log(err);
-//             }
-//         })
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
+    try {
+        pool.query(query, (err, result) => {
+            if (!err) {
+                res
+                    .json({ mensaje: `Artículo actualizado a ${nuevo_numero_registro}` })
+                    .status(200)
+                    .send();
+            } else {
+                console.log(err);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 module.exports = router;
