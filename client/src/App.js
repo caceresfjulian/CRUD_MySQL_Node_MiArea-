@@ -1,7 +1,10 @@
+import Categorias from "./components/Categorias";
+
+
 function App() {
   return (
     <div>
-      <h1>App</h1>
+      <Categorias />
     </div>
   );
 }
