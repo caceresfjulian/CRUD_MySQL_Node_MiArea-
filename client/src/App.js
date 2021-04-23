@@ -1,10 +1,14 @@
 import Categorias from "./components/Categorias";
-
+import Header from "./components/Header";
+import './App.css';
 
 function App() {
   return (
-    <div className="container">
-      <Categorias />
+    <div>
+      <Header />
+      <div className="container">
+        <Categorias />
+      </div>
     </div>
   );
 }
