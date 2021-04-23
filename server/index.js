@@ -23,4 +23,5 @@ app.listen(process.env.PORT, () => {
 
 app.use('/api/', require('./src/routes/api.routes'));
 app.use('/categorias/', require('./src/routes/categorias.routes'));
+app.use('/articulos/', require('./src/routes/articulos.routes'));
 
