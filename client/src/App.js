@@ -3,7 +3,7 @@ import Categorias from "./components/Categorias";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Categorias />
     </div>
   );
