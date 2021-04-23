@@ -27,20 +27,20 @@ router.post('/', (req, res) => {
     }
 });
 
-// // Eliminar una categoría 
-// router.delete('/:id', async (req, res) => {
+// Eliminar una categoría 
+router.delete('/:id', async (req, res) => {
 
-//     const id = req.params.id;
-//     const query = `DELETE FROM categorias WHERE id = ${id}`;
-//     try {
-//         pool.query(query, (err, result) => {
-//             res.json({ mensaje: 'Registro eliminado.' });
-//         })
-//     }
-//     catch (error) {
-//         console.log(error);
-//     }
-// });
+    const id = req.params.id;
+    const query = `DELETE FROM articulos WHERE id = ${id}`;
+    try {
+        pool.query(query, (err, result) => {
+            res.json({ mensaje: 'Artículo eliminado.' });
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
 
 // // Modificar una categoría específica
 // router.put('/', async (req, res) => {
