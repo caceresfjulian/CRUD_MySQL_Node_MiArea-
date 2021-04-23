@@ -14,16 +14,6 @@ app.use(cors({
     credentials: true
 }))
 
-// Conexión a db
-// require('./src/database');
-
-// Creación de las tablas solicitadas
-// client.query('SELECT * from categorias', (err, res) => {
-//     if(!err){
-//         console.log(res.rows);
-//     }
-//     client.end();
-// })
 app.listen(process.env.PORT, () => {
     console.log('Escuchando por el puerto', process.env.PORT);
 });
